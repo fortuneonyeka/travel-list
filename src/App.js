@@ -5,15 +5,39 @@ import PackingList from "./components/packinngList/PackingList";
 import Stats from "./components/stats/Stats";
 
 function App() {
-  const [items, setItems] = useState([])
+  const [items, setItems] = useState([]);
   const handleAddItems = (item) => {
-    setItems((prev) => [...prev, item])
+    setItems((prev) => [...prev, item]);
+  };
+
+  const handleDelete = (id) => {
+   const updatedItem =  items.filter((item) => item.id !== id)
+   setItems(updatedItem)
   }
+
+
+  const modifyItem = (id, newDescription) => {
+    setItems((prevItems) =>
+      prevItems.map((item) =>
+        item.id === id ? { ...item, description: newDescription } : item
+      )
+    );
+  };
+
+  const handleModify = (id) => {
+    const newDescription = prompt("Enter the new description:");
+    
+    if (newDescription) {
+      modifyItem(id, newDescription);
+    }
+  };
+
   return (
     <div className="app">
       <Header />
-      <Form handleAddItems={handleAddItems}/>
-      <PackingList items={items}/>
+      <Form handleAddItems={handleAddItems} />
+      <PackingList items={items} handleDelete={handleDelete} handleModify=
+      {handleModify}/>
       <Stats />
     </div>
   );
