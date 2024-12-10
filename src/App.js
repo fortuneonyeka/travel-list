@@ -6,6 +6,12 @@ import Stats from "./components/stats/Stats";
 
 function App() {
   const [items, setItems] = useState([]);
+
+
+  
+  
+  
+
   const handleAddItems = (item) => {
     setItems((prev) => [...prev, item]);
   };
@@ -13,6 +19,11 @@ function App() {
   const handleDelete = (id) => {
    const updatedItem =  items.filter((item) => item.id !== id)
    setItems(updatedItem)
+  }
+
+  const handleClearList =  () => {
+    const confirm = window.confirm("Are you sure you want to clear the list?")
+    if(confirm) setItems([])
   }
 
 
@@ -48,8 +59,8 @@ function App() {
       <Header />
       <Form handleAddItems={handleAddItems} />
       <PackingList items={items} handleDelete={handleDelete} handleModify=
-      {handleModify} handleCheckBox={handleCheckBox}/>
-      <Stats />
+      {handleModify} handleCheckBox={handleCheckBox} handleClearList={handleClearList}/>
+      <Stats items={items}/>
     </div>
   );
 }
