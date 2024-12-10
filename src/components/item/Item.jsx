@@ -1,10 +1,11 @@
 import React from "react";
 
-const ItemList = ({ item,handleDelete, handleModify }) => {
+const ItemList = ({ item,handleDelete, handleModify, handleCheckBox}) => {
   return (
     <div>
       <li>
-        {" "}
+        <input type="checkbox" value={item.packed} onChange={() => handleCheckBox(item.id)}/>
+        
         <span
           style={
             item.packed

@@ -1,12 +1,12 @@
 import React from "react";
 import Item from "../item/Item";
 
-const PackingList = ({ items,handleDelete, handleModify }) => {
+const PackingList = ({ items,handleDelete, handleModify, handleCheckBox}) => {
   return (
     <div className="list">
       <ul>
         {items.map((item) => (
-          <Item item={item} key={item.id} handleDelete={handleDelete} handleModify={handleModify}/>
+          <Item item={item} key={item.id} handleDelete={handleDelete} handleModify={handleModify} handleCheckBox={handleCheckBox}/>
         ))}
       </ul>
     </div>

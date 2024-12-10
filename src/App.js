@@ -32,12 +32,23 @@ function App() {
     }
   };
 
+  
+  const handleCheckBox = (id) => {
+    setItems((prevItems) =>
+      prevItems.map((item) =>
+        item.id === id ? { ...item, packed: !item.packed } : item
+      )
+    );
+  };
+  
+  
+
   return (
     <div className="app">
       <Header />
       <Form handleAddItems={handleAddItems} />
       <PackingList items={items} handleDelete={handleDelete} handleModify=
-      {handleModify}/>
+      {handleModify} handleCheckBox={handleCheckBox}/>
       <Stats />
     </div>
   );
